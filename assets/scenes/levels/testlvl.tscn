@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://cgcf86p0lu2mn"]
+[gd_scene load_steps=12 format=4 uid="uid://cgcf86p0lu2mn"]
 
 [ext_resource type="Texture2D" uid="uid://hwfu41lwbhad" path="res://assets/sprites/tile1.png" id="1_fw4dm"]
+[ext_resource type="Script" uid="uid://dpnby5dwnhvpd" path="res://assets/scripts/Ground.gd" id="2_4o8rn"]
 [ext_resource type="Texture2D" uid="uid://c6wyx6wxjq8s" path="res://assets/sprites/tile2.png" id="2_pwnh2"]
 [ext_resource type="PackedScene" uid="uid://cyu7ub36kwd43" path="res://assets/scenes/player.tscn" id="3_ejadd"]
 [ext_resource type="Texture2D" uid="uid://cx1ben844cou3" path="res://assets/sprites/ground.png" id="3_pwnh2"]
 [ext_resource type="AudioStream" uid="uid://bakwr2w36voio" path="res://assets/audio/StereoMadness.mp3" id="5_4o8rn"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2g6v"]
+normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4o8rn"]
 
@@ -110,13 +114,6 @@ sources/2 = SubResource("TileSetAtlasSource_4o8rn")
 
 [node name="testlvl" type="Node2D"]
 
-[node name="icon" parent="." instance=ExtResource("3_ejadd")]
-position = Vector2(-32, -32)
-
-[node name="StereoMadness" type="AudioStreamPlayer" parent="icon"]
-stream = ExtResource("5_4o8rn")
-autoplay = true
-
 [node name="ground" type="StaticBody2D" parent="."]
 
 [node name="Ground" type="Sprite2D" parent="ground"]
@@ -125,7 +122,15 @@ texture_repeat = 2
 position = Vector2(0, 128)
 texture = ExtResource("3_pwnh2")
 region_enabled = true
-region_rect = Rect2(0, 0, 2560, 256)
+region_rect = Rect2(0, 0, 4096, 256)
+
+[node name="Area2D" type="Area2D" parent="ground/Ground"]
+position = Vector2(0, -128)
+script = ExtResource("2_4o8rn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/Ground/Area2D"]
+position = Vector2(256, 0)
+shape = SubResource("WorldBoundaryShape2D_j2g6v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
 shape = SubResource("WorldBoundaryShape2D_4o8rn")
@@ -148,3 +153,11 @@ tile_set = SubResource("TileSet_j2g6v")
 [node name="half offset diagonally grid2" type="TileMapLayer" parent="tilemap"]
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_j2g6v")
+
+[node name="player" parent="." instance=ExtResource("3_ejadd")]
+position = Vector2(-36, -36)
+
+[node name="StereoMadness" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("5_4o8rn")
+
+[connection signal="body_entered" from="ground/Ground/Area2D" to="ground/Ground/Area2D" method="_on_body_entered"]
