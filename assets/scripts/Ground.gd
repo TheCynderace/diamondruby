@@ -12,4 +12,4 @@ func _on_body_entered(body: Node2D) -> void:
 	var ground = $".."
 	var player = $"../../../player"
 	if body == player:
-		ground.position.x += 256
+		ground.position.x += 512

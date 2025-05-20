@@ -116,7 +116,7 @@ sources/2 = SubResource("TileSetAtlasSource_4o8rn")
 
 [node name="Ground" type="Sprite2D" parent="ground"]
 z_index = 5
-texture_repeat = 2
+texture_repeat = 3
 position = Vector2(0, 128)
 texture = ExtResource("3_pwnh2")
 region_enabled = true
@@ -127,7 +127,7 @@ position = Vector2(0, -128)
 script = ExtResource("2_4o8rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground/Ground/Area2D"]
-position = Vector2(256, 0)
+position = Vector2(512, 0)
 shape = SubResource("WorldBoundaryShape2D_j2g6v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
