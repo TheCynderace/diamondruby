@@ -15,6 +15,10 @@ run/main_scene="uid://cgcf86p0lu2mn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/tassi/Videos/godot/recording.avi"
+
 [input]
 
 jump={
