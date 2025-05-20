@@ -9,7 +9,19 @@ const jp_mult = -600
 var grav = 6100
 var rot = 0
 
+var layer_of_collision = null
+const yeouch_layer = 1 << (2 - 1)
+
 func _physics_process(delta: float) -> void:
+	
+	var collision = move_and_slide()
+	if collision:
+		var collider = get_last_slide_collision().get_collider()
+		
+		if collider is TileMapLayer:
+			var tile_rid = get_last_slide_collision().get_collider_rid()
+			layer_of_collision = PhysicsServer2D.body_get_collision_layer(tile_rid)
+	
 	if not is_on_floor():
 		velocity.y +=  grav * delta
 		rot += 7 * (delta * 60)
@@ -19,6 +31,5 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jppower * jp_mult
 	$cube.rotation_degrees += (rot - $cube.rotation_degrees) / 3
 	velocity.x = spd * spd_mult * spd_portal_mult
-	if is_on_wall() or is_on_ceiling():
+	if layer_of_collision == yeouch_layer:
 		get_tree().reload_current_scene()
-	move_and_slide()
