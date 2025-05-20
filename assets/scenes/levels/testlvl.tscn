@@ -159,5 +159,6 @@ position = Vector2(-36, -36)
 
 [node name="StereoMadness" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource("5_4o8rn")
+autoplay = true
 
 [connection signal="body_entered" from="ground/Ground/Area2D" to="ground/Ground/Area2D" method="_on_body_entered"]
