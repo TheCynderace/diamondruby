@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://dn5wrcqkj0e50" path="res://assets/scripts/cube.gd" id="1_pjo7u"]
 [ext_resource type="Texture2D" uid="uid://l2kycw8wl3jm" path="res://assets/sprites/icon01.png" id="1_w4nut"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w62q2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s027a"]
 size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nenxh"]
 
 [node name="player" type="CharacterBody2D"]
+collision_mask = 3
 floor_stop_on_slope = false
 script = ExtResource("1_pjo7u")
 
@@ -51,10 +52,11 @@ region_rect = Rect2(72, 72, 72, 72)
 
 [node name="outerhitbox" type="CollisionShape2D" parent="."]
 z_index = 2
-shape = SubResource("RectangleShape2D_w62q2")
+shape = SubResource("RectangleShape2D_s027a")
 debug_color = Color(1, 0, 0, 0)
 
 [node name="innerhitbox" type="CollisionShape2D" parent="."]
 z_index = 2
 shape = SubResource("RectangleShape2D_nenxh")
+disabled = true
 debug_color = Color(0, 0, 1, 0)

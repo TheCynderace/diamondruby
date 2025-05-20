@@ -19,4 +19,6 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jppower * jp_mult
 	$cube.rotation_degrees += (rot - $cube.rotation_degrees) / 3
 	velocity.x = spd * spd_mult * spd_portal_mult
+	if is_on_wall() or is_on_ceiling():
+		get_tree().reload_current_scene()
 	move_and_slide()
