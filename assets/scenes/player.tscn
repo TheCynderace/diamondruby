@@ -1,7 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyu7ub36kwd43"]
+[gd_scene load_steps=7 format=3 uid="uid://cyu7ub36kwd43"]
 
 [ext_resource type="Script" uid="uid://dn5wrcqkj0e50" path="res://assets/scripts/cube.gd" id="1_pjo7u"]
 [ext_resource type="Texture2D" uid="uid://l2kycw8wl3jm" path="res://assets/sprites/icon01.png" id="1_w4nut"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s027a"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_s027a"]
+_data = [Vector2(0, 1), 0.0, -2.68623, 0, 1, Vector2(1, 0), -1.93824, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_14505"]
+blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s027a"]
 size = Vector2(64, 64)
@@ -22,6 +32,20 @@ drag_left_margin = 0.5
 drag_top_margin = 0.5
 editor_draw_limits = true
 
+[node name="particle" type="CPUParticles2D" parent="."]
+z_index = -2
+material = SubResource("CanvasItemMaterial_s027a")
+position = Vector2(-28, 32)
+amount = 30
+direction = Vector2(0, -1)
+gravity = Vector2(0, 600)
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_s027a")
+color = Color(0.0470588, 1, 0, 1)
+
 [node name="cube" type="Node2D" parent="."]
 
 [node name="P1" type="Sprite2D" parent="cube"]
@@ -39,6 +63,7 @@ region_rect = Rect2(72, 0, 72, 72)
 
 [node name="G" type="Sprite2D" parent="cube"]
 z_index = -2
+material = SubResource("CanvasItemMaterial_14505")
 texture = ExtResource("1_w4nut")
 region_enabled = true
 region_rect = Rect2(0, 72, 72, 72)
