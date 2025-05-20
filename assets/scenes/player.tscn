@@ -8,7 +8,7 @@ size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nenxh"]
 
-[node name="icon" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D"]
 floor_stop_on_slope = false
 floor_constant_speed = true
 script = ExtResource("1_pjo7u")
