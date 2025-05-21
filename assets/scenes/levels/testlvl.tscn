@@ -132,6 +132,7 @@ sources/2 = SubResource("TileSetAtlasSource_4o8rn")
 [node name="ground" type="StaticBody2D" parent="."]
 
 [node name="Ground" type="Sprite2D" parent="ground"]
+modulate = Color(0, 0.429098, 1, 1)
 z_index = 5
 texture_repeat = 3
 position = Vector2(0, 128)
