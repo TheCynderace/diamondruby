@@ -19,11 +19,13 @@ size = Vector2(64, 64)
 [node name="player" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 3
-floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 1.55334
 script = ExtResource("1_pjo7u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(256, 0)
+limit_left = -256
 limit_bottom = 192
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0

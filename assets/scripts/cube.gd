@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 	velocity.x = spd * spd_mult * spd_portal_mult
 	if layer_of_collision == yeouch_layer:
 		get_tree().reload_current_scene()
-		
 func stopparticle(particle: CPUParticles2D, time: float):
 	await get_tree().create_timer(time).timeout
 	particle.emitting = false
